@@ -11,6 +11,13 @@ body {
 
   font-family: Lato;
   color: white;
+
+  background-image: radial-gradient(
+    circle at 18% -21%,
+    #4b4343,
+    #4a4343 6%,
+    #242020 56%
+  );
 }
 
 .bg-image {
@@ -42,11 +49,23 @@ body {
 .logo-support-title {
   font-size: 14px;
   margin-top: 15px;
+  font-family: Montserrat;
+  opacity: 0.74;
 }
 
 .page-title {
   margin-top: 100px;
   margin-bottom: 15px;
+
+  font-size: 40px;
+  font-family: PlayfairDisplay;
+  font-weight: normal;
+}
+
+.page-title-2 {
+  font-family: PlayfairDisplay;
+  font-weight: bold;
+  font-size: 40px;
 }
 
 .subtitle {
@@ -58,11 +77,16 @@ body {
   font-size: 24px;
 }
 
+.button-support-title {
+  margin-bottom: 10px;
+  opacity: 0.25;
+}
+
 .migrate-button {
   width: 80%;
   padding: 20px 0px;
 
-  margin-top: 100px;
+  /* margin-top: 100px; */
 
   font-family: Montserrat;
   font-size: 24px;
@@ -90,9 +114,13 @@ body {
     width: 100%;
   }
 
+  .logo-support-title {
+    font-size: 10px;
+  }
+
   .page-title {
     margin-top: 50px;
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .page-title-2 {
@@ -112,7 +140,6 @@ body {
 
   .migrate-button {
     font-size: 14px;
-    margin-top: 50px;
     padding: 15px 0px;
   }
 

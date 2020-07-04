@@ -1,0 +1,148 @@
+body {
+  position: relative;
+
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: Lato;
+  color: white;
+}
+
+.bg-image {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+
+  height: 100%;
+  width: 100%;
+
+  z-index: -1;
+}
+
+.container {
+  width: 50%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trell-logo {
+  height: 80px;
+  width: 80px;
+
+  margin-top: 80px;
+}
+
+.logo-support-title {
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.page-title {
+  margin-top: 100px;
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  width: 80%;
+  text-wrap: balance;
+  opacity: 0.6;
+  margin-top: 15px;
+
+  font-size: 24px;
+}
+
+.migrate-button {
+  width: 80%;
+  padding: 20px 0px;
+
+  margin-top: 100px;
+
+  font-family: Montserrat;
+  font-size: 24px;
+
+  cursor: pointer;
+}
+
+.num-tiktokers {
+  margin-top: 24px;
+  opacity: 0.5;
+}
+
+.footer {
+  position: fixed;
+  bottom: 100px;
+
+  flex-direction: column;
+
+  width: 50%;
+}
+
+@media (max-width: 600px) {
+  .container,
+  .footer {
+    width: 100%;
+  }
+
+  .page-title {
+    margin-top: 50px;
+    font-size: 16px;
+  }
+
+  .page-title-2 {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 20px;
+
+    flex-direction: column;
+  }
+
+  .migrate-button {
+    font-size: 14px;
+    margin-top: 50px;
+    padding: 15px 0px;
+  }
+
+  .num-tiktokers {
+    width: 80%;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .trell-logo {
+    margin-top: 20px;
+  }
+
+  .page-title {
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 650px) and (max-width: 800px) {
+  .container,
+  .footer {
+    width: 70%;
+  }
+}
+
+/* common */
+
+.fbca {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "trell-tiktok-migration",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf public && mkdir public && cp *.html public/ && cp *.css public/",
+    "deploy:dev": "npm run build && firebase deploy --only hosting"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

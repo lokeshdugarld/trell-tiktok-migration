@@ -25,6 +25,7 @@
         src="https://cdn.trell.co/images/orig/7vudEpjFCObHcBpljh4WBb7waDMYKPXc.png"
         alt="Trell Logo"
         class="trell-logo"
+        onclick="onLogoClick()"
       />
       <h3 class="logo-support-title">India’s #1 Vlogging App</h3>
 
@@ -46,10 +47,16 @@
           I Want To Migrate My Content
         </button>
 
-        <p class="num-tiktokers">
-          400+ TikTok-ers safely migrated their videos to Trell in the last 24
-          hours.
-        </p>
+        <div class="num-tiktokers--form">
+          <p>
+            <span class="text--orange">3243 TikTok-ers</span> safely migrated
+            their videos to Trell in the last 24 hours!
+          </p>
+
+          <p>
+            Check the profiles of @XXXXXXX, @XXCCCCC, @WWWWMMM & many others.
+          </p>
+        </div>
       </footer>
     </div>
 
@@ -127,14 +134,13 @@
         <button onclick="submitForm()" class="submit-button">Submit</button>
       </form>
 
-      <div class="num-tiktokers--form">
+      <footer class="footer fbca">
         <p>
-          <span class="text--orange">3243 TikTok-ers</span> safely migrated
-          their videos to Trell in the last 24 hours!
+          If you have any queries regarding this, please contact us on mail.
         </p>
 
-        <p>Check the profiles of @XXXXXXX, @XXCCCCC, @WWWWMMM & many others.</p>
-      </div>
+        <a class="contact-us" href="mailto:savemyvideos@trell.in">Contact Us</a>
+      </footer>
     </div>
 
     <div class="container success-container hide">
@@ -142,6 +148,7 @@
         src="https://cdn.trell.co/images/orig/7vudEpjFCObHcBpljh4WBb7waDMYKPXc.png"
         alt="Trell Logo"
         class="trell-logo"
+        onclick="onLogoClick()"
       />
       <h3 class="logo-support-title">India’s #1 Vlogging App</h3>
 
@@ -170,11 +177,14 @@
           <span class="share-button--desktop">Share this</span>
         </button>
 
-        <a href="mailto:savemyvideos@trell.in">
-          <button class="primary-button primary-button--contact fbca">
-            Contact Us
-          </button>
-        </a>
+        <!-- <a href="mailto:savemyvideos@trell.in"> -->
+        <button
+          onclick="window.location.href = 'mailto:savemyvideos@trell.in'"
+          class="primary-button primary-button--contact fbca"
+        >
+          Contact Us
+        </button>
+        <!-- </a> -->
       </div>
 
       <footer class="footer fbca">

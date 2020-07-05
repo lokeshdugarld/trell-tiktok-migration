@@ -11,17 +11,13 @@ body {
 
   font-family: Lato;
   color: white;
-}
 
-.bg-image {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-
-  height: 100%;
-  width: 100%;
-
-  z-index: -1;
+  background-image: radial-gradient(
+    circle at 18% -21%,
+    #4b4343,
+    #4a4343 6%,
+    #242020 56%
+  );
 }
 
 .container {
@@ -42,32 +38,53 @@ body {
 .logo-support-title {
   font-size: 14px;
   margin-top: 15px;
+  font-family: Montserrat;
+  opacity: 0.74;
 }
 
 .page-title {
-  margin-top: 100px;
-  margin-bottom: 15px;
+  margin-top: 8vh;
+
+  font-size: 40px;
+  font-family: 'Playfair Display', serif;
+  font-weight: normal;
+}
+
+.page-title-2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  font-size: 40px;
 }
 
 .subtitle {
   width: 80%;
   text-wrap: balance;
   opacity: 0.6;
-  margin-top: 15px;
 
   font-size: 24px;
+  margin-top: 20px;
 }
 
-.migrate-button {
+.button-support-title {
+  margin-bottom: 10px;
+  opacity: 0.25;
+}
+
+.primary-button {
   width: 80%;
   padding: 20px 0px;
 
-  margin-top: 100px;
+  /* margin-top: 100px; */
 
   font-family: Montserrat;
   font-size: 24px;
 
   cursor: pointer;
+
+  color: #f2363c;
+
+  border-radius: 5px;
+  border: 0px;
 }
 
 .num-tiktokers {
@@ -90,9 +107,13 @@ body {
     width: 100%;
   }
 
+  .logo-support-title {
+    font-size: 10px;
+  }
+
   .page-title {
     margin-top: 50px;
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .page-title-2 {
@@ -110,9 +131,8 @@ body {
     flex-direction: column;
   }
 
-  .migrate-button {
+  .primary-button {
     font-size: 14px;
-    margin-top: 50px;
     padding: 15px 0px;
   }
 

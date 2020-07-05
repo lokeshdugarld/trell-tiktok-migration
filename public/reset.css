@@ -10,3 +10,13 @@ h3 {
   text-align: center;
   margin: 0px;
 }
+
+.container {
+  transition: opacity 0.5s;
+}
+
+.hide {
+  opacity: 0;
+  z-index: -1;
+  display: none;
+}

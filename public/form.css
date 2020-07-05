@@ -109,14 +109,30 @@
 
 .num-tiktokers--form {
   width: 80%;
-  font-size: 12px;
-  opacity: 0.5;
+  font-size: 16px;
+  opacity: 0.75;
 
   margin-top: 15px;
+
+  position: fixed;
+  bottom: 15px;
 }
 
 .transfer-form {
   width: 100%;
+}
+
+.form-container .footer {
+  position: static;
+  margin-bottom: 20px;
+}
+
+.form-container .footer p {
+  opacity: 0.5;
+}
+
+.form-container .contact-us {
+  margin-top: 10px;
 }
 
 @media (max-width: 600px) {
@@ -164,15 +180,20 @@
   .num-tiktokers--form {
     width: 80%;
     font-size: 12px;
-    opacity: 0.5;
+    opacity: 0.75;
+    position: static;
   }
 
   .num-tiktokers--form p:first-child {
     margin-bottom: 10px;
   }
 
-  .num-tiktokers--form p:last-child {
+  /* .num-tiktokers--form p:last-child {
     margin-bottom: 10vw;
+  } */
+
+  .form-container .footer {
+    width: 80%;
   }
 }
 

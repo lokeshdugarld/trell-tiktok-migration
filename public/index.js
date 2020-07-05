@@ -2,6 +2,10 @@ const homeEl = document.querySelector('.home-container');
 const formEl = document.querySelector('.form-container');
 const successEl = document.querySelector('.success-container');
 
+function onLogoClick() {
+  window.open('https://trell.co/watch', 'blank');
+}
+
 function goToForm() {
   console.log('goToForm -> goToForm', goToForm);
 

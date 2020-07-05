@@ -104,7 +104,7 @@ function sendData(data) {
     method: 'POST',
     body: formdata,
     redirect: 'follow',
-    mode: 'no-cors',
+    mode: 'cors',
   };
 
   return fetch(

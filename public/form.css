@@ -125,6 +125,7 @@
 .form-container .footer {
   position: static;
   margin-bottom: 20px;
+  opacity: 0;
 }
 
 .form-container .footer p {
@@ -193,6 +194,7 @@
   } */
 
   .form-container .footer {
+    opacity: 1;
     width: 80%;
   }
 }

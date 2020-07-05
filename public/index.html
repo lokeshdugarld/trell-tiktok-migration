@@ -18,7 +18,7 @@
     />
   </head>
   <body>
-    <div class="container home-container">
+    <div class="container home-container hide">
       <!-- <img class="bg-image" src="" alt="Background Image of India" /> -->
 
       <img
@@ -143,7 +143,7 @@
       </footer>
     </div>
 
-    <div class="container success-container hide">
+    <div class="container success-container">
       <img
         src="https://cdn.trell.co/images/orig/7vudEpjFCObHcBpljh4WBb7waDMYKPXc.png"
         alt="Trell Logo"
@@ -167,7 +167,13 @@
       <hr class="divider" />
 
       <div class="success-buttons">
-        <button class="primary-button primary-button--share fbca">
+        <!-- <a
+        
+      > -->
+        <button
+          onclick="shareToWhatsapp()"
+          class="primary-button primary-button--share fbca"
+        >
           <img
             class="share-button__icon"
             src="./share-1.svg"
@@ -176,7 +182,7 @@
           <span class="share-button--mobile"> Share this with friends </span>
           <span class="share-button--desktop">Share this</span>
         </button>
-
+        <!-- </a> -->
         <!-- <a href="mailto:savemyvideos@trell.in"> -->
         <button
           onclick="window.location.href = 'mailto:savemyvideos@trell.in'"

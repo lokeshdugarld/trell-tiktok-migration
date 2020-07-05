@@ -6,6 +6,11 @@ function onLogoClick() {
   window.open('https://trell.co/watch', 'blank');
 }
 
+function shareToWhatsapp() {
+  const TEXT = 'Easily migrate tiktok to trell by using trell.co/tiktok';
+  window.open(`https://api.whatsapp.com/send?text=${TEXT}`, '_blank');
+}
+
 function goToForm() {
   console.log('goToForm -> goToForm', goToForm);
 

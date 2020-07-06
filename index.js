@@ -167,3 +167,15 @@ function validateEmail(email) {
 function validatePhoneNumber(number) {
   return Number.isInteger(parseInt(number)) && number.length === 10;
 }
+
+// Init
+
+window.addEventListener('load', () => {
+  const el = document.querySelector('.num-tiktokers');
+
+  const BASE_TIME = 1594030291597;
+  const DIFF = 2 * 60 * 1000;
+  const tiktokers = 3243 + Math.ceil((Date.now() - BASE_TIME) / DIFF);
+
+  el.innerHTML = tiktokers;
+});

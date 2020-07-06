@@ -1,7 +1,11 @@
+body {
+  overflow: hidden;
+}
+
 .form-container {
   width: 50%;
 
-  padding-top: 80px;
+  padding-top: 36px;
 
   position: absolute;
   left: 0px;
@@ -14,12 +18,14 @@
 .form-page-title {
   font-size: 24px;
   opacity: 0.5;
+
+  font-weight: normal;
 }
 
 .personal-info,
 .tiktok-info {
   background-color: rgba(255, 255, 255, 0.05);
-  margin-top: 24px;
+  margin-top: 36px;
   width: 90%;
 
   position: relative;
@@ -48,6 +54,7 @@
   top: 24px;
 
   opacity: 0.25;
+  font-weight: 400;
 }
 
 .input-box {
@@ -77,6 +84,27 @@
   border: 0px;
 
   font-size: 18px;
+  font-family: Lato;
+
+  position: relative;
+
+  padding: 10px;
+  color: #242020;
+}
+
+.input__handle {
+  padding-left: 30px;
+}
+
+.input__error {
+  opacity: 0;
+}
+
+.input--error ~ .input__error {
+  margin-top: 2px;
+  font-size: 12px;
+  opacity: 1;
+  color: #f2363c;
 }
 
 .input:focus {
@@ -96,10 +124,12 @@
   border: 0px;
   border-radius: 5px;
 
-  margin-top: 24px;
+  margin-top: 36px;
 
   font-size: 24px;
-  /* font-weight: bold; */
+  font-family: Lato;
+  font-weight: 400;
+
   color: white;
 
   cursor: pointer;
@@ -109,13 +139,13 @@
 
 .num-tiktokers--form {
   width: 80%;
-  font-size: 16px;
+  font-size: 18px;
   opacity: 0.75;
 
   margin-top: 15px;
 
   position: fixed;
-  bottom: 15px;
+  bottom: 36px;
 }
 
 .transfer-form {
@@ -132,14 +162,30 @@
   opacity: 0.5;
 }
 
-.form-container .contact-us {
+.container .contact-us {
   margin-top: 10px;
+}
+
+.num-tiktokers--form p:first-child {
+  margin-bottom: 10px;
+}
+
+.line-break__mobile {
+  display: none;
 }
 
 @media (max-width: 600px) {
   /* body {
     background-image: none;
   } */
+
+  body {
+    overflow: scroll;
+  }
+
+  .line-break__mobile {
+    display: unset;
+  }
 
   .form-container {
     width: 100%;
@@ -155,7 +201,8 @@
 
   .form-page-title {
     font-size: 16px;
-    max-width: 90%;
+    max-width: 80%;
+    margin-bottom: 0px;
   }
 
   form {
@@ -171,16 +218,26 @@
     box-sizing: border-box;
   }
 
+  .input {
+    font-size: 16px;
+  }
+
+  .form-title {
+    font-size: 16px;
+    text-align: left;
+  }
+
   .submit-button {
     margin-bottom: 20px;
     width: 80%;
     margin-left: 10%;
     height: 50px;
+    font-size: 16px;
   }
 
   .num-tiktokers--form {
     width: 80%;
-    font-size: 12px;
+    font-size: 14px;
     opacity: 0.75;
     position: static;
   }
@@ -197,24 +254,45 @@
     opacity: 1;
     width: 80%;
   }
+
+  .container .contact-us {
+    font-size: 14px;
+  }
+
+  .footer__queries {
+    font-size: 12px;
+    opacity: 0.5;
+  }
+}
+
+.footer__queries {
+  opacity: 0.5;
 }
 
 .text--orange {
-  color: #f2363c;
+  /* color: #f2363c; */
+  font-size: 18px;
+  font-weight: bold;
 }
 
 /* Success page */
 
 .success-container {
   position: absolute;
-  left: 25%;
+  left: 20%;
   top: 0px;
 }
 
-.success-container .subtitle,
+.success-container .subtitle-2 {
+  font-weight: normal;
+}
+
+.success-container .subtitle {
+  color: white;
+}
+
 .success-container .subtitle-2 {
   color: #c8c6c6;
-  opacity: 1;
 }
 
 .success-container .subtitle-2 {
@@ -269,10 +347,6 @@
     font-size: 24px;
   }
 
-  .subtitle {
-    font-size: 14px;
-  }
-
   .subtitle-2 {
     font-size: 12px;
     margin-top: 20px;
@@ -306,5 +380,10 @@
 
   .success-container .footer {
     display: flex;
+  }
+
+  .text--orange {
+    /* color: #f2363c; */
+    font-size: 14px;
   }
 }

@@ -2,12 +2,15 @@ const homeEl = document.querySelector('.home-container');
 const formEl = document.querySelector('.form-container');
 const successEl = document.querySelector('.success-container');
 
+let userEmail = '';
+
 function onLogoClick() {
   window.open('https://trell.co/watch', 'blank');
 }
 
 function shareToWhatsapp() {
-  const TEXT = 'Easily migrate tiktok to trell by using trell.co/tiktok';
+  const TEXT =
+    'Hey! I just easily migrated my content from Tiktok to Trell. Find out how I did it on http://MigrateMyTikTokContent.com.';
   window.open(`https://api.whatsapp.com/send?text=${TEXT}`, '_blank');
 }
 
@@ -44,11 +47,6 @@ const els = [
     rules: 'required',
     objKey: 'tiktokname',
   },
-  {
-    name: 'Tiktok Handle Profile URL',
-    rules: 'required',
-    objKey: 'tiktoklink',
-  },
 ];
 
 let isSubmitting = false;
@@ -59,17 +57,45 @@ function onSubmit(e) {
 }
 
 function submitForm() {
+  if (isSubmitting) {
+    return;
+  }
+
   isSubmitting = true;
   const data = {};
 
   const final = els.filter((el) => {
     const htmlEl = document.querySelector(`input[name="${el.name}"]`);
     if (!htmlEl.value) {
+      if (el.objKey === 'tiktokname') {
+        htmlEl.parentElement.classList.add('input--error');
+        return true;
+      }
+
       htmlEl.classList.add('input--error');
       return true;
     } else {
+      if (el.objKey === 'email') {
+        userEmail = htmlEl.value;
+        if (!validateEmail(userEmail)) {
+          htmlEl.classList.add('input--error');
+          return true;
+        }
+      }
+
+      if (el.objKey === 'contact') {
+        if (!validatePhoneNumber(htmlEl.value)) {
+          htmlEl.classList.add('input--error');
+          return true;
+        }
+      }
+
       data[el.objKey] = htmlEl.value;
-      htmlEl.classList.remove('input--error');
+      if (el.objKey === 'tiktokname') {
+        htmlEl.parentElement.classList.remove('input--error');
+      } else {
+        htmlEl.classList.remove('input--error');
+      }
       return false;
     }
   });
@@ -84,16 +110,29 @@ function submitForm() {
       console.log('submitForm -> res', res);
       formEl.classList.add('hide');
       successEl.classList.remove('hide');
+
+      const intervalId = setInterval(() => {
+        const el = document.querySelector('.success-container .subtitle');
+
+        if (el) {
+          el.innerHTML = `We will mail you on ${userEmail} with the details in less than 24
+          hours.`;
+          clearInterval(intervalId);
+        }
+      }, 50);
     })
     .catch((err) => {
       console.log('submitForm -> err', err);
+    })
+    .finally(() => {
+      isSubmitting = false;
     });
 }
 
 /////// SERVICE
 
 function sendData(data) {
-  const { fullName, city, email, contact, tiktokname, tiktoklink } = data;
+  const { fullName, city, email, contact, tiktokname } = data;
   const TIKTOK_ACC_TYPE = 3;
 
   var formdata = new FormData();
@@ -102,8 +141,8 @@ function sendData(data) {
   formdata.append('email', email);
   formdata.append('accountType', TIKTOK_ACC_TYPE);
   formdata.append('contact', contact);
-  formdata.append('tiktokName', tiktokname);
-  formdata.append('tiktokLink', tiktoklink);
+  // formdata.append('tiktokName', tiktokname);
+  formdata.append('tiktokLink', `https://www.tiktok.com/@${tiktokname}`);
 
   var requestOptions = {
     method: 'POST',
@@ -126,5 +165,5 @@ function validateEmail(email) {
 }
 
 function validatePhoneNumber(number) {
-  return Number.isInteger(parseInt(number));
+  return Number.isInteger(parseInt(number)) && number.length === 10;
 }

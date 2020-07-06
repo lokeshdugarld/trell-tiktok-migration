@@ -5,11 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trell | Migrate your TikTok Content from your profile</title>
 
-    <link rel="stylesheet" href="./index.css" />
-    <link rel="stylesheet" href="./reset.css" />
-    <link rel="stylesheet" href="./form.css" />
+    <script async>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js',
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-MTPKBKF');
+    </script>
+
+    <link rel="stylesheet" href="./index.css?v=2" />
+    <link rel="stylesheet" href="./reset.css?v=2" />
+    <link rel="stylesheet" href="./form.css?v=2" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:wght@500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -18,43 +34,69 @@
     />
   </head>
   <body>
-    <div class="container home-container hide">
+    <div class="container home-container">
       <!-- <img class="bg-image" src="" alt="Background Image of India" /> -->
 
       <img
-        src="https://cdn.trell.co/images/orig/7vudEpjFCObHcBpljh4WBb7waDMYKPXc.png"
+        src="./group.svg"
         alt="Trell Logo"
         class="trell-logo"
         onclick="onLogoClick()"
       />
-      <h3 class="logo-support-title">India’s #1 Vlogging App</h3>
+      <h3 class="logo-support-title">India’s #1 Lifestyle Video App</h3>
 
-      <h1 class="page-title">Dear TikTok-ers!</h1>
+      <h1 class="page-title">Dear Creators,</h1>
       <h1 class="page-title-2">
-        Unable to access <br />
-        <img src="./tiktok-1-copy-2.svg" alt="Tiktok logo" /> your TikTok
-        content?
+        Unable to access <br class="line-break__mobile" />
+        your
+        <img
+          class="tiktok-icon"
+          src="./tiktok-1-copy-2.svg"
+          alt="Tiktok logo"
+        />
+        TikTok content?
       </h1>
 
       <h4 class="subtitle">
-        Trell will help you migrate your TikTok content from your profile
-        without the TikTok watermark.
+        Trell will help you migrate your TikTok videos from your profile
+        (without TikTok watermark)!
       </h4>
 
-      <footer class="footer fbca">
-        <p class="button-support-title">Click below to continue.</p>
-        <button onclick="goToForm()" class="primary-button">
-          I Want To Migrate My Content
-        </button>
+      <p class="button-support-title button-support-title--desktop"></p>
+      <p class="button-support-title button-support-title--mobile"></p>
+      <button onclick="goToForm()" class="primary-button">
+        Yes, migrate my content
+      </button>
 
+      <footer class="footer fbca">
         <div class="num-tiktokers--form">
           <p>
             <span class="text--orange">3243 TikTok-ers</span> safely migrated
-            their videos to Trell in the last 24 hours!
+            their videos to Trell till now!
           </p>
 
-          <p>
-            Check the profiles of @XXXXXXX, @XXCCCCC, @WWWWMMM & many others.
+          <p class="profile-handles">
+            Check the profiles of
+            <a
+              class="profile-link"
+              href="https://trell.co/profile/alinarai007190365"
+              target="_blank"
+              >@alinarai</a
+            >,
+            <a
+              class="profile-link"
+              href="https://trell.co/profile/bijju3210166085"
+              target="_blank"
+              >@bijju</a
+            >
+            ,
+            <a
+              class="profile-link"
+              href="https://trell.co/profile/PriyankMongiaEntertainer123447187"
+              target="_blank"
+              >@PriyankM</a
+            >
+            & many others.
           </p>
         </div>
       </footer>
@@ -70,22 +112,24 @@
         <div class="personal-info">
           <h3 class="form-title">1. Your Personal Information*</h3>
           <span class="input-box">
-            <label class="input-label" for="Full Name">Full Name</label
+            <label class="input-label" for="Full Name">First Name</label
             ><input
               class="input input__full-name"
               type="text"
               name="Full Name"
               id=""
             />
+            <span class="input__error">Invalid Input. Please Check.</span>
           </span>
           <span class="input-box">
-            <label class="input-label" for="Current City">Current City</label
+            <label class="input-label" for="Current City">Last Name</label
             ><input
               class="input input__city"
               type="text"
               name="Current City"
               id=""
             />
+            <span class="input__error">Invalid Input. Please Check.</span>
           </span>
           <span class="input-box input-box--pt24">
             <label class="input-label" for="E-mail ID">E-mail ID</label
@@ -95,15 +139,17 @@
               name="E-mail ID"
               id=""
             />
+            <span class="input__error">Invalid Input. Please Check.</span>
           </span>
           <span class="input-box input-box--pt24">
-            <label class="input-label" for="Phone Number">Phone Number</label
-            ><input
+            <label class="input-label" for="Phone Number">Phone Number</label>
+            <input
               class="input input__phone"
               type="text"
               name="Phone Number"
               id=""
             />
+            <span class="input__error">Invalid Input. Please Check.</span>
           </span>
         </div>
 
@@ -112,30 +158,37 @@
           <span class="input-box">
             <label class="input-label" for="Tiktok Handle Name"
               >Tiktok Handle Name</label
-            ><input
-              class="input input__handle"
-              type="text"
-              name="Tiktok Handle Name"
-              id=""
-            />
+            >
+            <span class="fbca" style="position: relative;">
+              <p class="handle-prefix">@</p>
+              <input
+                class="input input__handle"
+                type="text"
+                name="Tiktok Handle Name"
+                placeholder="handlename"
+                id=""
+              />
+            </span>
+            <span class="input__error">Invalid Input. Please Check.</span>
           </span>
-          <span class="input-box">
+          <!-- <span class="input-box">
             <label class="input-label" for="Tiktok Handle Profile URL"
               >Tiktok Handle Profile URL</label
             ><input
               class="input input__profile"
               type="text"
               name="Tiktok Handle Profile URL"
+              placeholder="tiktok.com/@handlename"
               id=""
             />
-          </span>
+          </span> -->
         </div>
 
         <button onclick="submitForm()" class="submit-button">Submit</button>
       </form>
 
       <footer class="footer fbca">
-        <p>
+        <p class="footer__queries">
           If you have any queries regarding this, please contact us on mail.
         </p>
 
@@ -143,21 +196,18 @@
       </footer>
     </div>
 
-    <div class="container success-container">
+    <div class="container success-container hide">
       <img
-        src="https://cdn.trell.co/images/orig/7vudEpjFCObHcBpljh4WBb7waDMYKPXc.png"
+        src="./group.svg"
         alt="Trell Logo"
         class="trell-logo"
         onclick="onLogoClick()"
       />
-      <h3 class="logo-support-title">India’s #1 Vlogging App</h3>
+      <h3 class="logo-support-title">India’s #1 Lifestyle Video App</h3>
 
       <h1 class="page-title">Thank you for submitting your details.</h1>
 
-      <h4 class="subtitle">
-        We will mail you on xxx@gmail.com with the details in less than 24
-        hours.
-      </h4>
+      <h4 class="subtitle"></h4>
       <h4 class="subtitle-2">
         In order to avoid plagiarism, we will send you a few questions to
         authenticate your identity before sending you the login credentials of
@@ -194,7 +244,7 @@
       </div>
 
       <footer class="footer fbca">
-        <p>
+        <p class="footer__queries">
           If you have any queries regarding this, please contact us on mail.
         </p>
 
@@ -203,7 +253,7 @@
     </div>
     <!-- </div> -->
 
-    <script src="./index.js"></script>
+    <script src="./index.js?v=2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/validate-js/2.0.1/validate.min.js"></script>
   </body>
 </html>

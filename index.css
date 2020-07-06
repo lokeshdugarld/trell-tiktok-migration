@@ -109,7 +109,7 @@ body {
 
 .num-tiktokers {
   margin-top: 24px;
-  opacity: 0.5;
+  /* opacity: 0.5; */
 }
 
 .footer {
@@ -133,6 +133,16 @@ body {
   margin-top: 15px;
   color: #f2363c;
   text-decoration: none;
+}
+
+@media (max-height: 600px) {
+  .home-container .page-title {
+    margin-top: 36px;
+  }
+
+  .button-support-title {
+    margin-top: 18px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -207,6 +217,27 @@ body {
   .container,
   .footer {
     width: 70%;
+  }
+}
+
+@media (max-width: 320px) {
+  .page-title,
+  .page-title-2 {
+    font-size: 16px;
+  }
+
+  .page-title {
+    margin-top: 20px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    margin-top: 16px;
+  }
+
+  .primary-button {
+    padding: 10px 0px;
+    font-size: 12px;
   }
 }
 

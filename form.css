@@ -265,6 +265,18 @@ body {
   }
 }
 
+@media (min-width: 1000px) and (max-width: 1300px) {
+  .form-container {
+    padding-top: 24px;
+  }
+
+  .personal-info,
+  .tiktok-info,
+  .submit-button {
+    margin-top: 24px;
+  }
+}
+
 .footer__queries {
   opacity: 0.5;
 }
@@ -385,5 +397,25 @@ body {
   .text--orange {
     /* color: #f2363c; */
     font-size: 14px;
+  }
+}
+
+@media (max-width: 320px) {
+  .success-container .page-title,
+  .success-container .page-title-2 {
+    font-size: 16px;
+  }
+
+  .success-container .subtitle {
+    font-size: 12px;
+  }
+
+  .success-container .primary-button {
+    padding: 10px 0px;
+    font-size: 12px;
+  }
+
+  .primary-button--share {
+    margin-top: 16px;
   }
 }

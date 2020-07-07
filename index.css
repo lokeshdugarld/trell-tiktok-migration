@@ -12,12 +12,12 @@ body {
   font-family: Lato;
   color: white;
 
-  background-image: radial-gradient(
+  /* background-image: radial-gradient(
     circle at 18% -21%,
     #4b4343,
     #4a4343 6%,
     #242020 56%
-  );
+  ); */
 }
 
 .container {

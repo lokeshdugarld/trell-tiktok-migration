@@ -1,5 +1,5 @@
 body {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .form-container {
@@ -13,6 +13,35 @@ body {
   left: 25%;
 
   /* z-index: -1; */
+}
+
+.container:after {
+  content: '';
+
+  position: absolute;
+  left: -50%;
+  top: 0px;
+
+  height: 100%;
+  width: 100vw;
+  z-index: -1;
+
+  background-image: radial-gradient(
+    circle at 18% -21%,
+    #4b4343,
+    #4a4343 6%,
+    #242020 56%
+  );
+}
+
+.home-container:after {
+  left: 0px;
+}
+
+@media (max-width: 600px) {
+  .container:after {
+    left: 0px;
+  }
 }
 
 .form-page-title {
@@ -57,11 +86,32 @@ body {
   font-weight: 400;
 }
 
+.tiktok-info--img {
+  padding-bottom: 80px;
+}
+
+.form-subtitle {
+  position: absolute;
+
+  bottom: 10px;
+  left: 24px;
+
+  font-size: 16px;
+  opacity: 0.25;
+  font-weight: 400;
+
+  text-align: left;
+}
+
 .input-box {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-top: 16px;
+}
+
+.input-box--upload {
+  justify-content: center;
 }
 
 .input-box--pt24 {
@@ -113,6 +163,39 @@ body {
 
 .input--error {
   border: 1px solid red;
+}
+
+.verify-reason {
+  margin-top: 36px;
+  margin-bottom: 15px;
+  width: 100%;
+  text-align: left;
+  opacity: 0.75;
+}
+
+.tiktok-info--img {
+  margin-top: 0px;
+}
+
+/* upload button */
+#upload-btn {
+  width: 100%;
+}
+
+.upload-btn__cam {
+  margin-right: 5px;
+}
+
+.sample-selfie {
+  /* width: 100%; */
+  min-height: 100px;
+  max-height: 250px;
+
+  max-width: 100%;
+
+  object-fit: cover;
+
+  border-radius: 5px;
 }
 
 .submit-button {
@@ -227,6 +310,16 @@ body {
     text-align: left;
   }
 
+  .verify-reason {
+    width: 80%;
+    margin-left: 10%;
+    text-align: left;
+  }
+
+  .sample-selfie {
+    width: 100%;
+  }
+
   .submit-button {
     margin-bottom: 20px;
     width: 80%;
@@ -272,8 +365,13 @@ body {
 
   .personal-info,
   .tiktok-info,
-  .submit-button {
+  .submit-button,
+  .verify-reason {
     margin-top: 24px;
+  }
+
+  .tiktok-info--img {
+    margin-top: 0px;
   }
 }
 
@@ -347,6 +445,11 @@ body {
 
 .contact-us {
   color: #f2363c;
+}
+
+.success-container::after {
+  left: unset;
+  height: 100vh;
 }
 
 @media (max-width: 600px) {

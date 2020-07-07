@@ -105,7 +105,7 @@ function submitForm() {
     return;
   }
 
-  sendData(data)
+  sendData(data, '1')
     .then((res) => {
       console.log('submitForm -> res', res);
       formEl.classList.add('hide');
@@ -115,11 +115,13 @@ function submitForm() {
         const el = document.querySelector('.success-container .subtitle');
 
         if (el) {
-          el.innerHTML = `We will mail you on ${userEmail} with the details in less than 24
+          el.innerHTML = `You'll receive Content Migration status on ${userEmail} within 24 hours
           hours.`;
           clearInterval(intervalId);
         }
       }, 50);
+
+      clearInterval(autoSaveIntervalId);
     })
     .catch((err) => {
       console.log('submitForm -> err', err);
@@ -131,7 +133,7 @@ function submitForm() {
 
 /////// SERVICE
 
-function sendData(data) {
+function sendData(data, submit) {
   const { fullName, city, email, contact, tiktokname } = data;
   const TIKTOK_ACC_TYPE = 3;
 
@@ -141,8 +143,9 @@ function sendData(data) {
   formdata.append('email', email);
   formdata.append('accountType', TIKTOK_ACC_TYPE);
   formdata.append('contact', contact);
-  // formdata.append('tiktokName', tiktokname);
+  formdata.append('imgUrl', uploadedFileURL);
   formdata.append('tiktokLink', `https://www.tiktok.com/@${tiktokname}`);
+  formdata.append('submit', submit);
 
   var requestOptions = {
     method: 'POST',
@@ -179,3 +182,128 @@ window.addEventListener('load', () => {
 
   el.innerHTML = tiktokers;
 });
+
+//
+
+let uploadedFileURL;
+
+let uploading = false;
+
+function openFileUploader() {
+  const fileInput = document.getElementById('upload-input');
+  const buttonEl = document.getElementById('upload-btn');
+  fileInput.click();
+}
+
+async function upload() {
+  if (uploading) {
+    return;
+  }
+
+  // ensure only pdf is uploaded
+  // check using fileInput.filename endswith pdf
+  const fileInput = document.getElementById('upload-input');
+  const buttonEl = document.getElementById('upload-btn');
+
+  buttonEl.innerHTML = 'Uploading';
+  if (
+    !(
+      fileInput.files[0].name.endsWith('png') ||
+      fileInput.files[0].name.endsWith('jpg') ||
+      fileInput.files[0].name.endsWith('jpeg') ||
+      fileInput.files[0].name.endsWith('webp')
+    )
+  ) {
+    buttonEl.innerHTML = 'Retry Upload';
+    return;
+  }
+
+  const url = 'https://trell.co.in/expresso/upload.php';
+  var formdata = new FormData();
+
+  formdata.append('image', fileInput.files[0]);
+
+  var requestOptions = {
+    method: 'POST',
+    body: formdata,
+  };
+
+  const result = await fetch(url, requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      console.log('upload -> result', result);
+      if (!result.success) {
+        throw new Error('error occurred');
+      }
+
+      uploadedFileURL = result.url;
+      buttonEl.innerHTML = 'Success, Click to Change';
+
+      setTimeout(() => {
+        const imgEl = document.querySelector('.sample-selfie');
+        imgEl.src = result.url;
+      }, 1000);
+      return result;
+    })
+    .catch((error) => {
+      buttonEl.innerHTML = 'Retry upload';
+    })
+    .finally(() => {
+      uploading = false;
+    });
+
+  console.log('result : ', result);
+}
+
+// Autosubmit
+
+let prevData = {};
+
+function autosave() {
+  const currData = {};
+
+  for (let index = 0; index < els.length; index++) {
+    const el = els[index];
+
+    const htmlEl = document.querySelector(`input[name="${el.name}"]`);
+
+    if (!htmlEl.value) {
+      console.log('returning due to empty value', el.name);
+      return;
+    }
+
+    currData[el.objKey] = htmlEl.value;
+
+    if (el.objKey === 'email') {
+      userEmail = htmlEl.value;
+      if (!validateEmail(userEmail)) {
+        console.log('returning due to invalid email');
+        return;
+      }
+    }
+
+    if (el.objKey === 'contact') {
+      if (!validatePhoneNumber(htmlEl.value)) {
+        console.log('returning due to invalid phone');
+        return;
+      }
+    }
+  }
+
+  console.log('autosave -> currData', currData);
+  console.log('autosave -> prevData', prevData);
+
+  // console.log('same , ', JSON.stringify(prevData) == JSON.stringify(currData));
+  if (JSON.stringify(prevData) == JSON.stringify(currData)) {
+    console.log('returning due to same objects');
+    return;
+  }
+
+  prevData = Object.assign({}, currData);
+  console.log('sending data');
+  // sendData(prevData, '0');
+}
+
+const autoSaveIntervalId = setInterval(() => {
+  autosave();
+}, 1500);

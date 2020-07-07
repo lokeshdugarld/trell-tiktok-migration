@@ -21,9 +21,9 @@
       })(window, document, 'script', 'dataLayer', 'GTM-MTPKBKF');
     </script>
 
-    <link rel="stylesheet" href="./index.css?v=2" />
-    <link rel="stylesheet" href="./reset.css?v=2" />
-    <link rel="stylesheet" href="./form.css?v=2" />
+    <link rel="stylesheet" href="./index.css?v=7" />
+    <link rel="stylesheet" href="./reset.css?v=7" />
+    <link rel="stylesheet" href="./form.css?v=7" />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
       rel="stylesheet"
@@ -72,7 +72,8 @@
         <div class="num-tiktokers--form">
           <p>
             <span class="text--orange">
-              <span class="text--orange num-tiktokers"></span> TikTok-ers</span
+              <span class="text--orange num-tiktokers"></span> TikTok
+              Stars</span
             >
             safely migrated their videos to Trell till now!
           </p>
@@ -185,6 +186,51 @@
             />
           </span> -->
         </div>
+        <p class="verify-reason">
+          Verification is mandatory to avoid theft of content. Your profile will
+          be ready on trell within 24 hours post-verification.
+        </p>
+        <div class="tiktok-info tiktok-info--img">
+          <h3 class="form-title">3. User verification</h3>
+          <p class="form-subtitle">
+            *Click a selfie holding your TikTok handle name card as shown in the
+            image
+          </p>
+          <span class="input-box input-box--upload">
+            <label class="input-label" for="Tiktok Handle Name"
+              >Upload your image for verification</label
+            >
+            <span class="fbca" style="position: relative;">
+              <input
+                type="file"
+                name=""
+                id="upload-input"
+                style="display: none;"
+                onchange="upload()"
+              />
+
+              <button
+                onclick="openFileUploader()"
+                class="primary-button fbca"
+                id="upload-btn"
+              >
+                <img
+                  class="upload-btn__cam"
+                  src="./camera_alt-black-18dp.svg"
+                  alt="Camera icon"
+                />
+                Click here to upload
+              </button>
+            </span>
+            <span class="input__error">Upload Failed. Please retry.</span>
+          </span>
+
+          <img
+            class="sample-selfie"
+            src="./verify-profile-support.jpeg"
+            alt="Sample selfies"
+          />
+        </div>
 
         <button onclick="submitForm()" class="submit-button">Submit</button>
       </form>
@@ -255,7 +301,8 @@
     </div>
     <!-- </div> -->
 
-    <script src="./index.js?v=2"></script>
+    <script src="./index.js?v=7"></script>
+    <!-- <script src="./upload.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/validate-js/2.0.1/validate.min.js"></script>
   </body>
 </html>

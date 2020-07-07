@@ -7,25 +7,31 @@ const successEl = document.querySelector('.success-container');
 let userEmail = '';
 
 
-function recordAnalytics(event = '', action = '', label = '') {
+function recordAnalytics(event = '', action = '', label = '', d1 = '') {
   let analyticsObj = {
     event, action, label
   }
+  if (d1) analyticsObj.d1 = d1
+
   console.table(analyticsObj);
   window.dataLayer.push(analyticsObj)
 }
 
-// const analyticsHelper = {
-//   events: { button: 'button', form: 'form', file: 'file' },
-//   action: { click: 'click', submit: 'submit', upload: 'upload', },
-//   success: 'Success',
-//   error: 'Error',
-//   trying: 'Trying to submit',
-//   selected: 'Selected',
-//   migrateButton: 'Migrate Button',
-//   uploadButton: 'Upload Button',
-//   autoSaved: 'Auto Saved',
-// }
+function capturePageImpression() {
+  recordAnalytics('page-impression', 'impression', 'Page loaded')
+}
+
+const analyticsHelper = {
+  events: { button: 'button', form: 'form', file: 'file' },
+  action: { click: 'click', submit: 'submit', upload: 'upload', },
+  success: 'Success',
+  error: 'Error',
+  trying: 'Trying to submit',
+  selected: 'Selected',
+  migrateButton: 'Migrate Button',
+  uploadButton: 'Upload Button',
+  autoSaved: 'Auto Saved',
+}
 
 
 function onLogoClick() {
@@ -39,8 +45,7 @@ function shareToWhatsapp() {
 }
 
 function goToForm() {
-  recordAnalytics('button', 'click', 'Migrate Button');
-
+  recordAnalytics(analyticsHelper.events.button, analyticsHelper.action.click, analyticsHelper.migrateButton);
   homeEl.classList.add('hide');
   formEl.classList.remove('hide');
 }
@@ -85,7 +90,7 @@ function submitForm() {
     return;
   }
 
-  recordAnalytics('form', 'submit', 'Trying to submit');
+  recordAnalytics(analyticsHelper.events.button, analyticsHelper.action.submit, analyticsHelper.trying);
 
   isSubmitting = true;
   const data = {};
@@ -147,7 +152,7 @@ function submitForm() {
         }
       }, 50);
 
-      recordAnalytics('form', 'submit', 'Success');
+      recordAnalytics(analyticsHelper.events.form, analyticsHelper.action.submit, analyticsHelper.success);
 
       clearInterval(autoSaveIntervalId);
     })
@@ -155,7 +160,7 @@ function submitForm() {
       // SUBMISSION FAILED
 
       console.log('submitForm -> err', err);
-      recordAnalytics('form', 'submit', 'Error');
+      recordAnalytics(analyticsHelper.events.form, analyticsHelper.action.submit, analyticsHelper.error);
     })
     .finally(() => {
       isSubmitting = false;
@@ -225,7 +230,7 @@ function openFileUploader() {
   const buttonEl = document.getElementById('upload-btn');
   fileInput.click();
 
-  recordAnalytics('button', 'click', 'Clicked on upload button');
+  recordAnalytics(analyticsHelper.events.button, analyticsHelper.action.click, analyticsHelper.uploadButton);
 
   // OPENED FILE UPLAODER
 }
@@ -236,7 +241,7 @@ async function upload() {
   }
 
   // FILE SELECTED
-  recordAnalytics('file', 'upload', 'Selected');
+  recordAnalytics(analyticsHelper.events.file, analyticsHelper.action.upload, analyticsHelper.selected);
 
   // ensure only pdf is uploaded
   // check using fileInput.filename endswith pdf
@@ -275,7 +280,7 @@ async function upload() {
       }
 
       // FILE UPLOAD SUCCESS , URL
-      recordAnalytics('file', 'upload', 'Success' + result.url);
+      recordAnalytics(analyticsHelper.events.file, analyticsHelper.action.upload, analyticsHelper.success, result.url);
 
       uploadedFileURL = result.url;
       buttonEl.innerHTML = 'Success, Click to Change';
@@ -289,7 +294,7 @@ async function upload() {
     .catch((error) => {
       // FILE UPLOAD FAILURE
       buttonEl.innerHTML = 'Retry upload';
-      recordAnalytics('file', 'upload', 'Error');
+      recordAnalytics(analyticsHelper.events.file, analyticsHelper.action.upload, analyticsHelper.error);
     })
     .finally(() => {
       uploading = false;
@@ -347,7 +352,7 @@ function autosave() {
   console.log('sending data');
 
   if (!eventCaptured) {
-    recordAnalytics('form', 'submit', 'Auto Saved');
+    recordAnalytics(analyticsHelper.events.form, analyticsHelper.action.submit, analyticsHelper.autoSaved, JSON.stringify(currData));
     eventCaptured = true;
   }
   // sendData(prevData, '0');

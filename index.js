@@ -61,6 +61,8 @@ function submitForm() {
     return;
   }
 
+  // TRYING TO SUBMITTING
+
   isSubmitting = true;
   const data = {};
 
@@ -121,9 +123,12 @@ function submitForm() {
         }
       }, 50);
 
+      // SUBMITTED SUCCESSFULLY
+
       clearInterval(autoSaveIntervalId);
     })
     .catch((err) => {
+      // SUBMISSION FAILED
       console.log('submitForm -> err', err);
     })
     .finally(() => {
@@ -193,12 +198,16 @@ function openFileUploader() {
   const fileInput = document.getElementById('upload-input');
   const buttonEl = document.getElementById('upload-btn');
   fileInput.click();
+
+  // OPENED FILE UPLAODER
 }
 
 async function upload() {
   if (uploading) {
     return;
   }
+
+  // FILE SELECTED
 
   // ensure only pdf is uploaded
   // check using fileInput.filename endswith pdf
@@ -236,6 +245,8 @@ async function upload() {
         throw new Error('error occurred');
       }
 
+      // FILE UPLOAD SUCCESS , URL
+
       uploadedFileURL = result.url;
       buttonEl.innerHTML = 'Success, Click to Change';
 
@@ -246,6 +257,7 @@ async function upload() {
       return result;
     })
     .catch((error) => {
+      // FILE UPLOAD FAILURE
       buttonEl.innerHTML = 'Retry upload';
     })
     .finally(() => {

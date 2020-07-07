@@ -1,8 +1,32 @@
+
+
 const homeEl = document.querySelector('.home-container');
 const formEl = document.querySelector('.form-container');
 const successEl = document.querySelector('.success-container');
 
 let userEmail = '';
+
+
+function recordAnalytics(event = '', action = '', label = '') {
+  let analyticsObj = {
+    event, action, label
+  }
+  console.table(analyticsObj);
+  window.dataLayer.push(analyticsObj)
+}
+
+// const analyticsHelper = {
+//   events: { button: 'button', form: 'form', file: 'file' },
+//   action: { click: 'click', submit: 'submit', upload: 'upload', },
+//   success: 'Success',
+//   error: 'Error',
+//   trying: 'Trying to submit',
+//   selected: 'Selected',
+//   migrateButton: 'Migrate Button',
+//   uploadButton: 'Upload Button',
+//   autoSaved: 'Auto Saved',
+// }
+
 
 function onLogoClick() {
   window.open('https://trell.co/watch', 'blank');
@@ -15,7 +39,7 @@ function shareToWhatsapp() {
 }
 
 function goToForm() {
-  console.log('goToForm -> goToForm', goToForm);
+  recordAnalytics('button', 'click', 'Migrate Button');
 
   homeEl.classList.add('hide');
   formEl.classList.remove('hide');
@@ -61,7 +85,7 @@ function submitForm() {
     return;
   }
 
-  // TRYING TO SUBMITTING
+  recordAnalytics('form', 'submit', 'Trying to submit');
 
   isSubmitting = true;
   const data = {};
@@ -123,13 +147,15 @@ function submitForm() {
         }
       }, 50);
 
-      // SUBMITTED SUCCESSFULLY
+      recordAnalytics('form', 'submit', 'Success');
 
       clearInterval(autoSaveIntervalId);
     })
     .catch((err) => {
       // SUBMISSION FAILED
+
       console.log('submitForm -> err', err);
+      recordAnalytics('form', 'submit', 'Error');
     })
     .finally(() => {
       isSubmitting = false;
@@ -199,6 +225,8 @@ function openFileUploader() {
   const buttonEl = document.getElementById('upload-btn');
   fileInput.click();
 
+  recordAnalytics('button', 'click', 'Clicked on upload button');
+
   // OPENED FILE UPLAODER
 }
 
@@ -208,6 +236,7 @@ async function upload() {
   }
 
   // FILE SELECTED
+  recordAnalytics('file', 'upload', 'Selected');
 
   // ensure only pdf is uploaded
   // check using fileInput.filename endswith pdf
@@ -246,6 +275,7 @@ async function upload() {
       }
 
       // FILE UPLOAD SUCCESS , URL
+      recordAnalytics('file', 'upload', 'Success' + result.url);
 
       uploadedFileURL = result.url;
       buttonEl.innerHTML = 'Success, Click to Change';
@@ -259,6 +289,7 @@ async function upload() {
     .catch((error) => {
       // FILE UPLOAD FAILURE
       buttonEl.innerHTML = 'Retry upload';
+      recordAnalytics('file', 'upload', 'Error');
     })
     .finally(() => {
       uploading = false;
@@ -270,6 +301,7 @@ async function upload() {
 // Autosubmit
 
 let prevData = {};
+let eventCaptured = false;
 
 function autosave() {
   const currData = {};
@@ -313,6 +345,11 @@ function autosave() {
 
   prevData = Object.assign({}, currData);
   console.log('sending data');
+
+  if (!eventCaptured) {
+    recordAnalytics('form', 'submit', 'Auto Saved');
+    eventCaptured = true;
+  }
   // sendData(prevData, '0');
 }
 
